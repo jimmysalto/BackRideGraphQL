@@ -1,0 +1,21 @@
+{
+  "name": "ridegraphql",
+  "version": "1.0.0",
+  "description": "backRideGraphQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "author": "Jimmy Salto",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fuse.js": "^6.4.6",
+    "graphql-subscriptions": "^1.1.0",
+    "mongoose": "^5.11.8",
+    "subscriptions-transport-ws": "^0.9.18"
+  }
+}
