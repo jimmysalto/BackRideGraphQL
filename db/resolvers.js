@@ -75,23 +75,26 @@ const resolvers = {
             }
         },
             
-        obtenerSolicitudes: async (_, {limit, offset,estado,tipoSolicitud,searchText})=>{  
+        obtenerSolicitudes: async (_, {limit, offset,estado,tipoSolicitud,searchText})=>{ 
+            
+            console.clear()
+            console.log(estado,tipoSolicitud,searchText)
             try {
-                let solicitudes = [];
-                //const solicitudes = await Solicitud.find({}).limit(10).sort({$natural:-1}); 
-                const todasSolicitudes = await Solicitud.find({}).sort({$natural:-1});
-                
-                if (estado) {
-                    solicitudes = todasSolicitudes.filter((solicitud) => solicitud.estado === estado);
+                 //const solicitudes = await Solicitud.find({}).limit(10).sort({$natural:-1}); 
+                let solicitudes = await Solicitud.find({}).sort({$natural:-1});
+                 if (estado) {
+                     solicitudes = solicitudes.filter((solicitud) => solicitud.estado === estado);
                 } 
 
                 if (tipoSolicitud){
-                    solicitudes = todasSolicitudes.filter((solicitud) => solicitud.tipoSolicitud === tipoSolicitud);
+                    solicitudes = solicitudes.filter((solicitud) => solicitud.tipoSolicitud === tipoSolicitud);
                 }
 
-                solicitudes = await search(todasSolicitudes, ['usuario.nombre', 'usuario.apellido'], searchText);
-                console.clear();
-                console.log(solicitudes);
+                solicitudes = await search(solicitudes, ['usuario.nombre', 'usuario.apellido'], searchText);
+                /* console.clear();
+                console.log(solicitudes); */
+
+                 
                 return solicitudes;
                 /* const hasMore = solicitudes.length > offset + limit;
                 
